@@ -404,6 +404,56 @@ def _default_c2000_clock_tree() -> ClockTree:
     )
 
 
+def _default_params(periph_type: str) -> list[PeripheralParam]:
+    """Generate default configuration parameters for common peripheral types."""
+    if periph_type == "ADC":
+        return [
+            PeripheralParam(name="resolution", label="Resolution", options=["12-bit", "16-bit"], default="12-bit"),
+            PeripheralParam(name="prescaler", label="Clock Prescaler", options=[1, 2, 4, 8], default=4),
+            PeripheralParam(name="sampling_time", label="Sampling Time", min=1, max=256, default=16, unit="cycles"),
+            PeripheralParam(name="continuous", label="Continuous Mode", default=False),
+        ]
+    if periph_type == "SCI":
+        return [
+            PeripheralParam(name="baud_rate", label="Baud Rate", options=[9600, 19200, 38400, 57600, 115200, 230400, 460800], default=115200, unit="bps"),
+            PeripheralParam(name="data_bits", label="Data Bits", options=[7, 8], default=8),
+            PeripheralParam(name="parity", label="Parity", options=["None", "Even", "Odd"], default="None"),
+            PeripheralParam(name="stop_bits", label="Stop Bits", options=[1, 2], default=1),
+        ]
+    if periph_type == "SPI":
+        return [
+            PeripheralParam(name="mode", label="SPI Mode", options=["Mode 0", "Mode 1", "Mode 2", "Mode 3"], default="Mode 0"),
+            PeripheralParam(name="clock_speed", label="Clock Speed", min=1000, max=50_000_000, default=1_000_000, unit="Hz"),
+            PeripheralParam(name="data_size", label="Data Size", options=[8, 16], default=16, unit="bits"),
+            PeripheralParam(name="bit_order", label="Bit Order", options=["MSB First", "LSB First"], default="MSB First"),
+        ]
+    if periph_type == "I2C":
+        return [
+            PeripheralParam(name="speed_mode", label="Speed Mode", options=["Standard (100kHz)", "Fast (400kHz)", "Fast Plus (1MHz)"], default="Standard (100kHz)"),
+            PeripheralParam(name="own_address", label="Own Address", min=0, max=127, default=0),
+            PeripheralParam(name="address_mode", label="Address Mode", options=["7-bit", "10-bit"], default="7-bit"),
+        ]
+    if periph_type == "CAN":
+        return [
+            PeripheralParam(name="bit_rate", label="Bit Rate", options=[125000, 250000, 500000, 1000000], default=500000, unit="bps"),
+            PeripheralParam(name="mode", label="Mode", options=["Normal", "Loopback", "Silent"], default="Normal"),
+            PeripheralParam(name="fd_enable", label="CAN FD Enable", default=False),
+        ]
+    if periph_type == "EPWM":
+        return [
+            PeripheralParam(name="frequency", label="PWM Frequency", min=1, max=200_000, default=20_000, unit="Hz"),
+            PeripheralParam(name="duty_cycle", label="Duty Cycle", min=0, max=100, default=50, unit="%"),
+            PeripheralParam(name="dead_band", label="Dead Band", min=0, max=1000, default=0, unit="ns"),
+            PeripheralParam(name="count_mode", label="Count Mode", options=["Up", "Down", "Up-Down"], default="Up"),
+        ]
+    if periph_type == "EQEP":
+        return [
+            PeripheralParam(name="mode", label="Operating Mode", options=["Quadrature", "Direction Count", "Clock/Direction"], default="Quadrature"),
+            PeripheralParam(name="max_count", label="Maximum Count", min=0, max=4294967295, default=65535),
+        ]
+    return []
+
+
 def _build_peripheral_groups(pins: list[Pin]) -> list[PeripheralGroup]:
     """Build peripheral groups from pin functions."""
     # Collect unique peripheral instances from pin functions
@@ -430,7 +480,7 @@ def _build_peripheral_groups(pins: list[Pin]) -> list[PeripheralGroup]:
             enabled=False,
             instances=1,
             pins=sorted(pin_names),
-            params=[],
+            params=_default_params(periph_type),
         )
 
         if periph_type in ("ADC", "DAC"):

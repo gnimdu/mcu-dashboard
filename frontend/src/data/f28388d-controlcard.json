@@ -2372,7 +2372,41 @@
             "ADCIN14",
             "ADCIN15"
           ],
-          "config": {}
+          "params": [
+            {
+              "name": "resolution",
+              "label": "Resolution",
+              "options": [
+                "12-bit",
+                "16-bit"
+              ],
+              "default": "12-bit"
+            },
+            {
+              "name": "prescaler",
+              "label": "Clock Prescaler",
+              "options": [
+                1,
+                2,
+                4,
+                8
+              ],
+              "default": 4
+            },
+            {
+              "name": "sampling_time",
+              "label": "Sampling Time",
+              "min": 1.0,
+              "max": 256.0,
+              "default": 16,
+              "unit": "cycles"
+            },
+            {
+              "name": "continuous",
+              "label": "Continuous Mode",
+              "default": false
+            }
+          ]
         }
       ]
     },
@@ -2387,7 +2421,35 @@
           "pins": [
             "GPIO-28"
           ],
-          "config": {}
+          "params": [
+            {
+              "name": "bit_rate",
+              "label": "Bit Rate",
+              "options": [
+                125000,
+                250000,
+                500000,
+                1000000
+              ],
+              "default": 500000,
+              "unit": "bps"
+            },
+            {
+              "name": "mode",
+              "label": "Mode",
+              "options": [
+                "Normal",
+                "Loopback",
+                "Silent"
+              ],
+              "default": "Normal"
+            },
+            {
+              "name": "fd_enable",
+              "label": "CAN FD Enable",
+              "default": false
+            }
+          ]
         },
         {
           "name": "I2C",
@@ -2397,7 +2459,34 @@
           "pins": [
             "GPIO-32"
           ],
-          "config": {}
+          "params": [
+            {
+              "name": "speed_mode",
+              "label": "Speed Mode",
+              "options": [
+                "Standard (100kHz)",
+                "Fast (400kHz)",
+                "Fast Plus (1MHz)"
+              ],
+              "default": "Standard (100kHz)"
+            },
+            {
+              "name": "own_address",
+              "label": "Own Address",
+              "min": 0.0,
+              "max": 127.0,
+              "default": 0
+            },
+            {
+              "name": "address_mode",
+              "label": "Address Mode",
+              "options": [
+                "7-bit",
+                "10-bit"
+              ],
+              "default": "7-bit"
+            }
+          ]
         },
         {
           "name": "MCBSP",
@@ -2409,7 +2498,7 @@
             "GPIO-58",
             "GPIO-59"
           ],
-          "config": {}
+          "params": []
         },
         {
           "name": "SCI",
@@ -2419,7 +2508,51 @@
           "pins": [
             "GPIO-28"
           ],
-          "config": {}
+          "params": [
+            {
+              "name": "baud_rate",
+              "label": "Baud Rate",
+              "options": [
+                9600,
+                19200,
+                38400,
+                57600,
+                115200,
+                230400,
+                460800
+              ],
+              "default": 115200,
+              "unit": "bps"
+            },
+            {
+              "name": "data_bits",
+              "label": "Data Bits",
+              "options": [
+                7,
+                8
+              ],
+              "default": 8
+            },
+            {
+              "name": "parity",
+              "label": "Parity",
+              "options": [
+                "None",
+                "Even",
+                "Odd"
+              ],
+              "default": "None"
+            },
+            {
+              "name": "stop_bits",
+              "label": "Stop Bits",
+              "options": [
+                1,
+                2
+              ],
+              "default": 1
+            }
+          ]
         },
         {
           "name": "SPI",
@@ -2429,7 +2562,46 @@
           "pins": [
             "GPIO-16"
           ],
-          "config": {}
+          "params": [
+            {
+              "name": "mode",
+              "label": "SPI Mode",
+              "options": [
+                "Mode 0",
+                "Mode 1",
+                "Mode 2",
+                "Mode 3"
+              ],
+              "default": "Mode 0"
+            },
+            {
+              "name": "clock_speed",
+              "label": "Clock Speed",
+              "min": 1000.0,
+              "max": 50000000.0,
+              "default": 1000000,
+              "unit": "Hz"
+            },
+            {
+              "name": "data_size",
+              "label": "Data Size",
+              "options": [
+                8,
+                16
+              ],
+              "default": 16,
+              "unit": "bits"
+            },
+            {
+              "name": "bit_order",
+              "label": "Bit Order",
+              "options": [
+                "MSB First",
+                "LSB First"
+              ],
+              "default": "MSB First"
+            }
+          ]
         }
       ]
     },
@@ -2444,7 +2616,7 @@
           "pins": [
             "GPIO-16"
           ],
-          "config": {}
+          "params": []
         },
         {
           "name": "EPWM",
@@ -2457,7 +2629,42 @@
             "GPIO-08",
             "GPIO-12"
           ],
-          "config": {}
+          "params": [
+            {
+              "name": "frequency",
+              "label": "PWM Frequency",
+              "min": 1.0,
+              "max": 200000.0,
+              "default": 20000,
+              "unit": "Hz"
+            },
+            {
+              "name": "duty_cycle",
+              "label": "Duty Cycle",
+              "min": 0.0,
+              "max": 100.0,
+              "default": 50,
+              "unit": "%"
+            },
+            {
+              "name": "dead_band",
+              "label": "Dead Band",
+              "min": 0.0,
+              "max": 1000.0,
+              "default": 0,
+              "unit": "ns"
+            },
+            {
+              "name": "count_mode",
+              "label": "Count Mode",
+              "options": [
+                "Up",
+                "Down",
+                "Up-Down"
+              ],
+              "default": "Up"
+            }
+          ]
         },
         {
           "name": "EQEP",
@@ -2468,7 +2675,25 @@
             "GPIO-20",
             "GPIO-54"
           ],
-          "config": {}
+          "params": [
+            {
+              "name": "mode",
+              "label": "Operating Mode",
+              "options": [
+                "Quadrature",
+                "Direction Count",
+                "Clock/Direction"
+              ],
+              "default": "Quadrature"
+            },
+            {
+              "name": "max_count",
+              "label": "Maximum Count",
+              "min": 0.0,
+              "max": 4294967295.0,
+              "default": 65535
+            }
+          ]
         },
         {
           "name": "SD",
@@ -2478,7 +2703,7 @@
           "pins": [
             "GPIO-48"
           ],
-          "config": {}
+          "params": []
         }
       ]
     }

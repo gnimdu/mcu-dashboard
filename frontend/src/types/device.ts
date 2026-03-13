@@ -115,10 +115,12 @@ export interface Peripheral {
   enabled: boolean;
   instances: number;
   pins: string[];
-  config: Record<string, PeripheralParam>;
+  params: PeripheralParam[];
 }
 
 export interface PeripheralParam {
+  name: string;
+  label?: string;
   options?: (string | number)[];
   min?: number;
   max?: number;

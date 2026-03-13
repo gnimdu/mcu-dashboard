@@ -100,6 +100,8 @@ class ClockTree(BaseModel):
 
 
 class PeripheralParam(BaseModel):
+    name: str
+    label: str | None = None
     options: list[str | int | float] | None = None
     min: float | None = None
     max: float | None = None
@@ -114,7 +116,7 @@ class Peripheral(BaseModel):
     enabled: bool = False
     instances: int = 1
     pins: list[str] = Field(default_factory=list)
-    config: dict[str, PeripheralParam] = Field(default_factory=dict)
+    params: list[PeripheralParam] = Field(default_factory=list)
 
 
 class PeripheralGroup(BaseModel):
