@@ -1,0 +1,198 @@
+{
+  "device": {
+    "name": "TMS320F28388D",
+    "manufacturer": "Texas Instruments",
+    "family": "C2000",
+    "description": "Dual-core 32-bit MCU with connectivity manager, 200 MHz C28x + CLA, 125 MHz CM (Arm Cortex-M4)",
+    "datasheet_url": "https://www.ti.com/lit/ds/symlink/tms320f28388d.pdf",
+    "datasheet_version": "Rev. E"
+  },
+  "packages": [
+    {
+      "name": "180-pin HSEC ControlCard",
+      "type": "controlcard",
+      "pin_count": 40,
+      "pins": [
+        { "id": "1", "name": "VCC", "position": { "side": "top", "index": 0 }, "type": "power", "functions": [{ "name": "VCC_3V3", "peripheral": "Power" }] },
+        { "id": "2", "name": "GPIO0", "position": { "side": "top", "index": 1 }, "type": "io", "functions": [{ "name": "GPIO0", "peripheral": "GPIO" }, { "name": "EPWM1A", "peripheral": "EPWM", "mux_mode": 1 }, { "name": "I2CA_SDA", "peripheral": "I2C", "mux_mode": 6 }] },
+        { "id": "3", "name": "GPIO1", "position": { "side": "top", "index": 2 }, "type": "io", "functions": [{ "name": "GPIO1", "peripheral": "GPIO" }, { "name": "EPWM1B", "peripheral": "EPWM", "mux_mode": 1 }, { "name": "I2CA_SCL", "peripheral": "I2C", "mux_mode": 6 }] },
+        { "id": "4", "name": "GPIO2", "position": { "side": "top", "index": 3 }, "type": "io", "functions": [{ "name": "GPIO2", "peripheral": "GPIO" }, { "name": "EPWM2A", "peripheral": "EPWM", "mux_mode": 1 }, { "name": "OUTPUTXBAR1", "peripheral": "XBAR", "mux_mode": 5 }] },
+        { "id": "5", "name": "GPIO3", "position": { "side": "top", "index": 4 }, "type": "io", "functions": [{ "name": "GPIO3", "peripheral": "GPIO" }, { "name": "EPWM2B", "peripheral": "EPWM", "mux_mode": 1 }, { "name": "OUTPUTXBAR2", "peripheral": "XBAR", "mux_mode": 5 }] },
+        { "id": "6", "name": "GPIO4", "position": { "side": "top", "index": 5 }, "type": "io", "functions": [{ "name": "GPIO4", "peripheral": "GPIO" }, { "name": "EPWM3A", "peripheral": "EPWM", "mux_mode": 1 }] },
+        { "id": "7", "name": "GPIO5", "position": { "side": "top", "index": 6 }, "type": "io", "functions": [{ "name": "GPIO5", "peripheral": "GPIO" }, { "name": "EPWM3B", "peripheral": "EPWM", "mux_mode": 1 }, { "name": "SPIA_STE", "peripheral": "SPI", "mux_mode": 7 }] },
+        { "id": "8", "name": "GPIO6", "position": { "side": "top", "index": 7 }, "type": "io", "functions": [{ "name": "GPIO6", "peripheral": "GPIO" }, { "name": "EPWM4A", "peripheral": "EPWM", "mux_mode": 1 }, { "name": "OUTPUTXBAR3", "peripheral": "XBAR", "mux_mode": 5 }] },
+        { "id": "9", "name": "GPIO7", "position": { "side": "top", "index": 8 }, "type": "io", "functions": [{ "name": "GPIO7", "peripheral": "GPIO" }, { "name": "EPWM4B", "peripheral": "EPWM", "mux_mode": 1 }, { "name": "SCIA_RX", "peripheral": "SCI", "mux_mode": 15 }] },
+        { "id": "10", "name": "GND", "position": { "side": "top", "index": 9 }, "type": "ground", "functions": [{ "name": "GND", "peripheral": "Power" }] },
+
+        { "id": "11", "name": "GPIO8", "position": { "side": "right", "index": 0 }, "type": "io", "functions": [{ "name": "GPIO8", "peripheral": "GPIO" }, { "name": "EPWM5A", "peripheral": "EPWM", "mux_mode": 1 }, { "name": "CANA_TX", "peripheral": "CAN", "mux_mode": 6 }] },
+        { "id": "12", "name": "GPIO9", "position": { "side": "right", "index": 1 }, "type": "io", "functions": [{ "name": "GPIO9", "peripheral": "GPIO" }, { "name": "EPWM5B", "peripheral": "EPWM", "mux_mode": 1 }] },
+        { "id": "13", "name": "GPIO10", "position": { "side": "right", "index": 2 }, "type": "io", "functions": [{ "name": "GPIO10", "peripheral": "GPIO" }, { "name": "EPWM6A", "peripheral": "EPWM", "mux_mode": 1 }, { "name": "CANA_RX", "peripheral": "CAN", "mux_mode": 6 }] },
+        { "id": "14", "name": "GPIO11", "position": { "side": "right", "index": 3 }, "type": "io", "functions": [{ "name": "GPIO11", "peripheral": "GPIO" }, { "name": "EPWM6B", "peripheral": "EPWM", "mux_mode": 1 }] },
+        { "id": "15", "name": "GPIO12", "position": { "side": "right", "index": 4 }, "type": "io", "functions": [{ "name": "GPIO12", "peripheral": "GPIO" }, { "name": "EPWM7A", "peripheral": "EPWM", "mux_mode": 1 }] },
+        { "id": "16", "name": "GPIO13", "position": { "side": "right", "index": 5 }, "type": "io", "functions": [{ "name": "GPIO13", "peripheral": "GPIO" }, { "name": "EPWM7B", "peripheral": "EPWM", "mux_mode": 1 }] },
+        { "id": "17", "name": "ADCA0", "position": { "side": "right", "index": 6 }, "type": "analog", "functions": [{ "name": "ADCINA0", "peripheral": "ADC" }], "electrical": { "voltage": "3.3V" } },
+        { "id": "18", "name": "ADCA1", "position": { "side": "right", "index": 7 }, "type": "analog", "functions": [{ "name": "ADCINA1", "peripheral": "ADC" }], "electrical": { "voltage": "3.3V" } },
+        { "id": "19", "name": "ADCB0", "position": { "side": "right", "index": 8 }, "type": "analog", "functions": [{ "name": "ADCINB0", "peripheral": "ADC" }], "electrical": { "voltage": "3.3V" } },
+        { "id": "20", "name": "VCC", "position": { "side": "right", "index": 9 }, "type": "power", "functions": [{ "name": "VCC_3V3", "peripheral": "Power" }] },
+
+        { "id": "21", "name": "GPIO16", "position": { "side": "bottom", "index": 0 }, "type": "io", "functions": [{ "name": "GPIO16", "peripheral": "GPIO" }, { "name": "SPIA_SIMO", "peripheral": "SPI", "mux_mode": 1 }, { "name": "SCIA_TX", "peripheral": "SCI", "mux_mode": 5 }] },
+        { "id": "22", "name": "GPIO17", "position": { "side": "bottom", "index": 1 }, "type": "io", "functions": [{ "name": "GPIO17", "peripheral": "GPIO" }, { "name": "SPIA_SOMI", "peripheral": "SPI", "mux_mode": 1 }, { "name": "SCIA_RX", "peripheral": "SCI", "mux_mode": 5 }] },
+        { "id": "23", "name": "GPIO18", "position": { "side": "bottom", "index": 2 }, "type": "io", "functions": [{ "name": "GPIO18", "peripheral": "GPIO" }, { "name": "SPIA_CLK", "peripheral": "SPI", "mux_mode": 1 }, { "name": "CANB_TX", "peripheral": "CAN", "mux_mode": 6 }] },
+        { "id": "24", "name": "GPIO22", "position": { "side": "bottom", "index": 3 }, "type": "io", "functions": [{ "name": "GPIO22", "peripheral": "GPIO" }, { "name": "EPQEP1S", "peripheral": "EQEP", "mux_mode": 1 }, { "name": "SCIB_TX", "peripheral": "SCI", "mux_mode": 3 }] },
+        { "id": "25", "name": "GPIO23", "position": { "side": "bottom", "index": 4 }, "type": "io", "functions": [{ "name": "GPIO23", "peripheral": "GPIO" }, { "name": "EQEP1I", "peripheral": "EQEP", "mux_mode": 1 }, { "name": "SCIB_RX", "peripheral": "SCI", "mux_mode": 3 }] },
+        { "id": "26", "name": "GPIO24", "position": { "side": "bottom", "index": 5 }, "type": "io", "functions": [{ "name": "GPIO24", "peripheral": "GPIO" }, { "name": "OUTPUTXBAR1", "peripheral": "XBAR", "mux_mode": 1 }, { "name": "EPWM8A", "peripheral": "EPWM", "mux_mode": 5 }] },
+        { "id": "27", "name": "GPIO25", "position": { "side": "bottom", "index": 6 }, "type": "io", "functions": [{ "name": "GPIO25", "peripheral": "GPIO" }, { "name": "OUTPUTXBAR2", "peripheral": "XBAR", "mux_mode": 1 }, { "name": "EPWM8B", "peripheral": "EPWM", "mux_mode": 5 }] },
+        { "id": "28", "name": "GPIO26", "position": { "side": "bottom", "index": 7 }, "type": "io", "functions": [{ "name": "GPIO26", "peripheral": "GPIO" }, { "name": "I2CA_SDA", "peripheral": "I2C", "mux_mode": 1 }] },
+        { "id": "29", "name": "GPIO27", "position": { "side": "bottom", "index": 8 }, "type": "io", "functions": [{ "name": "GPIO27", "peripheral": "GPIO" }, { "name": "I2CA_SCL", "peripheral": "I2C", "mux_mode": 1 }] },
+        { "id": "30", "name": "GND", "position": { "side": "bottom", "index": 9 }, "type": "ground", "functions": [{ "name": "GND", "peripheral": "Power" }] },
+
+        { "id": "31", "name": "GPIO28", "position": { "side": "left", "index": 0 }, "type": "io", "functions": [{ "name": "GPIO28", "peripheral": "GPIO" }, { "name": "SCIA_RX", "peripheral": "SCI", "mux_mode": 1 }] },
+        { "id": "32", "name": "GPIO29", "position": { "side": "left", "index": 1 }, "type": "io", "functions": [{ "name": "GPIO29", "peripheral": "GPIO" }, { "name": "SCIA_TX", "peripheral": "SCI", "mux_mode": 1 }] },
+        { "id": "33", "name": "GPIO30", "position": { "side": "left", "index": 2 }, "type": "io", "functions": [{ "name": "GPIO30", "peripheral": "GPIO" }, { "name": "CANB_RX", "peripheral": "CAN", "mux_mode": 1 }] },
+        { "id": "34", "name": "GPIO31", "position": { "side": "left", "index": 3 }, "type": "io", "functions": [{ "name": "GPIO31", "peripheral": "GPIO" }, { "name": "CANB_TX", "peripheral": "CAN", "mux_mode": 1 }] },
+        { "id": "35", "name": "GPIO32", "position": { "side": "left", "index": 4 }, "type": "io", "functions": [{ "name": "GPIO32", "peripheral": "GPIO" }, { "name": "I2CB_SDA", "peripheral": "I2C", "mux_mode": 1 }] },
+        { "id": "36", "name": "GPIO33", "position": { "side": "left", "index": 5 }, "type": "io", "functions": [{ "name": "GPIO33", "peripheral": "GPIO" }, { "name": "I2CB_SCL", "peripheral": "I2C", "mux_mode": 1 }] },
+        { "id": "37", "name": "GPIO34", "position": { "side": "left", "index": 6 }, "type": "io", "functions": [{ "name": "GPIO34", "peripheral": "GPIO" }, { "name": "OUTPUTXBAR5", "peripheral": "XBAR", "mux_mode": 1 }] },
+        { "id": "38", "name": "ADCC0", "position": { "side": "left", "index": 7 }, "type": "analog", "functions": [{ "name": "ADCINC0", "peripheral": "ADC" }], "electrical": { "voltage": "3.3V" } },
+        { "id": "39", "name": "ADCD0", "position": { "side": "left", "index": 8 }, "type": "analog", "functions": [{ "name": "ADCIND0", "peripheral": "ADC" }], "electrical": { "voltage": "3.3V" } },
+        { "id": "40", "name": "VCC", "position": { "side": "left", "index": 9 }, "type": "power", "functions": [{ "name": "VCC_3V3", "peripheral": "Power" }] }
+      ]
+    }
+  ],
+  "clock": {
+    "sources": [
+      { "id": "intosc1", "name": "INTOSC1", "frequency": 10000000, "type": "internal", "enabled": true },
+      { "id": "intosc2", "name": "INTOSC2", "frequency": 10000000, "type": "internal", "enabled": false },
+      { "id": "xtal", "name": "X1/X2", "frequency": 20000000, "type": "external", "enabled": true }
+    ],
+    "plls": [
+      {
+        "id": "syspll",
+        "name": "SYSPLL",
+        "source": "xtal",
+        "input_div": 1,
+        "multiplier": 20,
+        "output_div": 2,
+        "vco_frequency": 400000000,
+        "output_frequency": 200000000,
+        "enabled": true
+      },
+      {
+        "id": "auxpll",
+        "name": "AUXPLL",
+        "source": "xtal",
+        "input_div": 1,
+        "multiplier": 12,
+        "output_div": 2,
+        "vco_frequency": 240000000,
+        "output_frequency": 120000000,
+        "enabled": false
+      }
+    ],
+    "muxes": [],
+    "buses": [
+      { "id": "sysclk", "name": "SYSCLK", "source": "syspll", "divider": 1, "frequency": 200000000 },
+      { "id": "lspclk", "name": "LSPCLK", "source": "sysclk", "divider": 4, "frequency": 50000000 },
+      { "id": "epwmclk", "name": "EPWMCLK", "source": "sysclk", "divider": 2, "frequency": 100000000 },
+      { "id": "canclk", "name": "CANCLK", "source": "sysclk", "divider": 2, "frequency": 100000000 }
+    ]
+  },
+  "peripherals": [
+    {
+      "category": "Analog",
+      "peripherals": [
+        {
+          "name": "ADCA", "type": "ADC", "enabled": false, "instances": 1,
+          "pins": ["ADCA0", "ADCA1"],
+          "config": {
+            "resolution": { "options": ["12-bit", "16-bit"], "default": "12-bit" },
+            "clock_prescaler": { "options": [2, 4, 6, 8], "default": 4, "unit": "x" },
+            "sampling_time": { "options": [15, 25, 50, 75, 100], "default": 75, "unit": "cycles" }
+          }
+        },
+        {
+          "name": "ADCB", "type": "ADC", "enabled": false, "instances": 1,
+          "pins": ["ADCB0"],
+          "config": {
+            "resolution": { "options": ["12-bit", "16-bit"], "default": "12-bit" },
+            "clock_prescaler": { "options": [2, 4, 6, 8], "default": 4, "unit": "x" }
+          }
+        }
+      ]
+    },
+    {
+      "category": "Connectivity",
+      "peripherals": [
+        {
+          "name": "SCIA", "type": "SCI", "enabled": false, "instances": 1,
+          "pins": ["GPIO28", "GPIO29"],
+          "config": {
+            "baud_rate": { "min": 300, "max": 3000000, "default": 115200, "unit": "bps" },
+            "data_bits": { "options": [7, 8], "default": 8 },
+            "parity": { "options": ["None", "Even", "Odd"], "default": "None" },
+            "stop_bits": { "options": [1, 2], "default": 1 }
+          }
+        },
+        {
+          "name": "SPIA", "type": "SPI", "enabled": false, "instances": 1,
+          "pins": ["GPIO16", "GPIO17", "GPIO18"],
+          "config": {
+            "mode": { "options": ["Master", "Slave"], "default": "Master" },
+            "speed": { "min": 1000, "max": 50000000, "default": 1000000, "unit": "Hz" },
+            "data_bits": { "options": [8, 16], "default": 16 },
+            "clock_polarity": { "options": ["Low", "High"], "default": "Low" }
+          }
+        },
+        {
+          "name": "I2CA", "type": "I2C", "enabled": false, "instances": 1,
+          "pins": ["GPIO26", "GPIO27"],
+          "config": {
+            "speed_mode": { "options": ["Standard (100kHz)", "Fast (400kHz)"], "default": "Standard (100kHz)" },
+            "slave_address": { "min": 0, "max": 127, "default": 0 }
+          }
+        },
+        {
+          "name": "CANA", "type": "CAN", "enabled": false, "instances": 1,
+          "pins": ["GPIO8", "GPIO10"],
+          "config": {
+            "bit_rate": { "options": [125000, 250000, 500000, 1000000], "default": 500000, "unit": "bps" },
+            "mode": { "options": ["Normal", "Silent", "Loopback"], "default": "Normal" }
+          }
+        }
+      ]
+    },
+    {
+      "category": "Timers",
+      "peripherals": [
+        {
+          "name": "EPWM1", "type": "EPWM", "enabled": false, "instances": 1,
+          "pins": ["GPIO0", "GPIO1"],
+          "config": {
+            "frequency": { "min": 1, "max": 50000000, "default": 10000, "unit": "Hz" },
+            "duty_cycle": { "min": 0, "max": 100, "default": 50, "unit": "%" },
+            "dead_band": { "min": 0, "max": 1000, "default": 0, "unit": "ns" },
+            "count_mode": { "options": ["Up", "Down", "Up-Down"], "default": "Up-Down" }
+          }
+        },
+        {
+          "name": "EQEP1", "type": "EQEP", "enabled": false, "instances": 1,
+          "pins": ["GPIO22", "GPIO23"],
+          "config": {
+            "max_count": { "min": 0, "max": 4294967295, "default": 4294967295 },
+            "capture_mode": { "options": ["Quadrature", "Direction"], "default": "Quadrature" }
+          }
+        }
+      ]
+    }
+  ],
+  "resources": {
+    "GPIO": { "used": 0, "total": 169 },
+    "EPWM": { "used": 0, "total": 16 },
+    "ADC": { "used": 0, "total": 4 },
+    "SPI": { "used": 0, "total": 4 },
+    "SCI": { "used": 0, "total": 4 },
+    "I2C": { "used": 0, "total": 2 },
+    "CAN": { "used": 0, "total": 3 },
+    "EQEP": { "used": 0, "total": 3 }
+  }
+}

@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build output
+frontend/dist/
+extractor/dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+extractor/.venv/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test coverage
+coverage/
+.pytest_cache/
+
+# Temporary
+*.tmp
+*.bak
+
+# Reference/inspiration files (local only)
+inspiration/
+screenshots/
+
+# Claude local settings
+.claude/settings.local.json
+.claude/plans/
+
+# MCP config
+.mcp.json
