@@ -31,7 +31,7 @@ def excel(input_path: str, output_path: str) -> None:
 
     output = Path(output_path)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(device_data.model_dump_json(indent=2))
+    output.write_text(device_data.model_dump_json(indent=2, exclude_none=True))
 
     console.print(f"[bold green]Done![/] Output written to {output_path}")
     console.print(f"  Packages: {len(device_data.packages)}")
@@ -52,7 +52,7 @@ def pdf(input_path: str, output_path: str) -> None:
 
     output = Path(output_path)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(device_data.model_dump_json(indent=2))
+    output.write_text(device_data.model_dump_json(indent=2, exclude_none=True))
 
     console.print(f"[bold green]Done![/] Output written to {output_path}")
 
