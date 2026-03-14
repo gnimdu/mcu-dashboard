@@ -25,6 +25,11 @@ interface DeviceState {
   setUserLabel: (pinId: string, label: string) => void;
   clearPinAssignment: (pinId: string) => void;
 
+  // Clock actions
+  updatePLL: (pllId: string, field: 'input_div' | 'multiplier' | 'output_div', value: number) => void;
+  updateClockSource: (sourceId: string, field: 'frequency' | 'enabled', value: number | boolean) => void;
+  updateBusDivider: (busId: string, divider: number) => void;
+
   // Computed
   currentPackage: () => Package | null;
   selectedPin: () => Pin | null;
@@ -90,6 +95,83 @@ export const useDeviceStore = create<DeviceState>((set, get) => ({
       pin.user_label = undefined;
     }
     set({ device: updatedDevice });
+  },
+
+  updatePLL: (pllId, field, value) => {
+    const { device } = get();
+    if (!device) return;
+    const updated = structuredClone(device);
+    const pll = updated.clock.plls.find((p) => p.id === pllId);
+    if (!pll) return;
+    pll[field] = value;
+    // Find source frequency
+    const src = updated.clock.sources.find((s) => s.id === pll.source);
+    const srcFreq = src?.frequency ?? 0;
+    pll.vco_frequency = (srcFreq / pll.input_div) * pll.multiplier;
+    pll.output_frequency = pll.vco_frequency / pll.output_div;
+    // Propagate to buses sourced from this PLL
+    const propagate = (sourceId: string, freq: number) => {
+      for (const bus of updated.clock.buses) {
+        if (bus.source === sourceId) {
+          bus.frequency = freq / bus.divider;
+          propagate(bus.id, bus.frequency);
+        }
+      }
+    };
+    propagate(pll.id, pll.output_frequency);
+    set({ device: updated });
+  },
+
+  updateClockSource: (sourceId, field, value) => {
+    const { device } = get();
+    if (!device) return;
+    const updated = structuredClone(device);
+    const src = updated.clock.sources.find((s) => s.id === sourceId);
+    if (!src) return;
+    if (field === 'frequency') src.frequency = value as number;
+    else src.enabled = value as boolean;
+    // Recompute PLLs sourced from this
+    for (const pll of updated.clock.plls) {
+      if (pll.source === sourceId) {
+        pll.vco_frequency = (src.frequency / pll.input_div) * pll.multiplier;
+        pll.output_frequency = pll.vco_frequency / pll.output_div;
+        const propagate = (sid: string, freq: number) => {
+          for (const bus of updated.clock.buses) {
+            if (bus.source === sid) {
+              bus.frequency = freq / bus.divider;
+              propagate(bus.id, bus.frequency);
+            }
+          }
+        };
+        propagate(pll.id, pll.output_frequency);
+      }
+    }
+    set({ device: updated });
+  },
+
+  updateBusDivider: (busId, divider) => {
+    const { device } = get();
+    if (!device) return;
+    const updated = structuredClone(device);
+    const bus = updated.clock.buses.find((b) => b.id === busId);
+    if (!bus) return;
+    bus.divider = divider;
+    // Find source frequency (could be PLL or another bus)
+    const pll = updated.clock.plls.find((p) => p.id === bus.source);
+    const parentBus = updated.clock.buses.find((b) => b.id === bus.source);
+    const srcFreq = pll?.output_frequency ?? parentBus?.frequency ?? 0;
+    bus.frequency = srcFreq / divider;
+    // Propagate to child buses
+    const propagate = (sid: string, freq: number) => {
+      for (const b of updated.clock.buses) {
+        if (b.source === sid) {
+          b.frequency = freq / b.divider;
+          propagate(b.id, b.frequency);
+        }
+      }
+    };
+    propagate(bus.id, bus.frequency);
+    set({ device: updated });
   },
 
   currentPackage: () => {
