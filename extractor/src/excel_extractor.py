@@ -346,7 +346,7 @@ def _infer_device_name(file_path: Path) -> str:
     """Try to infer device name from the Excel filename."""
     name = file_path.stem.upper()
     # Look for specific TI patterns
-    match = re.search(r"(F\d{4,5}\w*)", name)
+    match = re.search(r"(F\d{4,5}[A-Z]*)", name)
     if match:
         return f"TMS320{match.group(1)}"
     # Check for "2838" pattern
