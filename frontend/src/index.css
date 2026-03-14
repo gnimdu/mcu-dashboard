@@ -64,3 +64,39 @@ body {
   animation: dash-flow 0.5s linear infinite;
   stroke-dasharray: 4;
 }
+
+/* Responsive: intermediate screens */
+@media (max-width: 1024px) {
+  .sidebar-panel {
+    width: 200px;
+    min-width: 200px;
+  }
+
+  .sidebar-panel .text-xs {
+    font-size: 0.7rem;
+  }
+}
+
+/* Responsive: small screens */
+@media (max-width: 768px) {
+  .sidebar-panel {
+    display: none;
+  }
+
+  header {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  header nav {
+    gap: 0;
+  }
+
+  header nav button span.material-symbols-outlined {
+    font-size: 1rem;
+  }
+
+  main {
+    padding: 0.25rem;
+  }
+}

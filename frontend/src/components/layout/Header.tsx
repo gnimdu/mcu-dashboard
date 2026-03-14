@@ -10,9 +10,26 @@ const tabs: { id: ViewTab; label: string; icon: string }[] = [
 ];
 
 export function Header() {
-  const { device, activeTab, setActiveTab, availableDevices, selectedPackageIndex } = useDeviceStore();
+  const { device, activeTab, setActiveTab, availableDevices, selectedPackageIndex, loadDeviceFromJSON } = useDeviceStore();
   const [exportMenuOpen, setExportMenuOpen] = useState(false);
   const exportRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const content = ev.target?.result as string;
+      const success = loadDeviceFromJSON(content, file.name);
+      if (!success) {
+        alert('Invalid device JSON file. Please check the file format.');
+      }
+    };
+    reader.readAsText(file);
+    // Reset so the same file can be re-selected
+    e.target.value = '';
+  };
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -46,10 +63,26 @@ export function Header() {
           ) : (
             <option>No device loaded</option>
           )}
-          {availableDevices.map((d) => (
-            <option key={d}>{d}</option>
-          ))}
+          {availableDevices
+            .filter((d) => d !== device?.device.name)
+            .map((d) => (
+              <option key={d}>{d}</option>
+            ))}
         </select>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".json"
+          className="hidden"
+          onChange={handleFileUpload}
+        />
+        <button
+          onClick={() => fileInputRef.current?.click()}
+          className="p-1.5 text-text-secondary hover:text-accent transition-colors"
+          title="Load device JSON"
+        >
+          <span className="material-symbols-outlined text-base">upload_file</span>
+        </button>
       </div>
 
       {/* Navigation tabs */}

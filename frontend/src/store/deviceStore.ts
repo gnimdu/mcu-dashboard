@@ -17,6 +17,7 @@ interface DeviceState {
 
   // Actions
   setDevice: (device: DeviceData) => void;
+  loadDeviceFromJSON: (json: string, fileName: string) => boolean;
   setAvailableDevices: (devices: string[]) => void;
   setSelectedPackage: (index: number) => void;
   setActiveTab: (tab: ViewTab) => void;
@@ -44,6 +45,27 @@ export const useDeviceStore = create<DeviceState>((set, get) => ({
   selectedPinId: null,
 
   setDevice: (device) => set({ device, selectedPackageIndex: 0, selectedPinId: null }),
+
+  loadDeviceFromJSON: (json, _fileName) => {
+    try {
+      const parsed = JSON.parse(json);
+      // Basic validation: check required top-level fields
+      if (!parsed.device?.name || !Array.isArray(parsed.packages) || !parsed.clock || !Array.isArray(parsed.peripherals)) {
+        return false;
+      }
+      const deviceData = parsed as DeviceData;
+      const deviceName = deviceData.device.name;
+      const { availableDevices } = get();
+      const updatedDevices = availableDevices.includes(deviceName)
+        ? availableDevices
+        : [...availableDevices, deviceName];
+      set({ device: deviceData, availableDevices: updatedDevices, selectedPackageIndex: 0, selectedPinId: null });
+      return true;
+    } catch {
+      return false;
+    }
+  },
+
   setAvailableDevices: (devices) => set({ availableDevices: devices }),
   setSelectedPackage: (index) => set({ selectedPackageIndex: index, selectedPinId: null }),
   setActiveTab: (tab) => set({ activeTab: tab }),
